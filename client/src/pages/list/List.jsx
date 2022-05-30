@@ -16,8 +16,14 @@ const List = () => {
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+  const [minPrice, setMinPrice] = useState(undefined);
+  const [maxPrice, setMaxPrice] = useState(undefined);
 
-  const { data, loading, error, refetch } = useFetch(`/hotels?city=${destination}`)
+  const { data, loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${minPrice || 0}&max=${maxPrice || 999}`)
+
+  const handleClick = () => {
+    reFetch()
+  }
 
 
   return (
@@ -48,12 +54,12 @@ const List = () => {
             <div className="lsItem">
               <label>Options</label>
               <div className="lsOptionItem">
-                <span className="lsOptionText">Min price <small>per night</small></span>
-                <input type="number" className="lsOptionInput" />
+                <span className="lsOptionText" >Min price <small>per night</small></span>
+                <input type="number" onChange={e => setMinPrice(e.target.value)} className="lsOptionInput" />
               </div>
               <div className="lsOptionItem">
-                <span className="lsOptionText">Max price <small>per night</small></span>
-                <input type="number" className="lsOptionInput" />
+                <span className="lsOptionText" >Max price <small>per night</small></span>
+                <input type="number" onChange={e => setMaxPrice(e.target.value)} className="lsOptionInput" />
               </div>
               <div className="lsOptionItem">
                 <span className="lsOptionText">Adults price</span>
@@ -68,14 +74,18 @@ const List = () => {
                 <input type="number" min={1} className="lsOptionInput" placeholder={options.room} />
               </div>
             </div>
-            <button>Search</button>
+            <button onClick={handleClick}>Search</button>
           </div>
           <div className="listResult">
-            {loading ? "The page is The page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loadingThe page is loading" : <>
-              {data.map(item => (
-              <SearchItem item={item} key={item._id}/>
-              ))}
-            </>}
+            {loading ? (
+              "loading"
+            ) : (
+              <>
+                {data.map((item) => (
+                  <SearchItem item={item} key={item._id} />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>

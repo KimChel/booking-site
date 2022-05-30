@@ -5,10 +5,14 @@ import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { faLocation, faMapPin, faPenNib, faFamily } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useFetch from "../../hooks/useFetch";
+import { useLocation } from "react-router-dom";
 
 
 export const Hotel = () => {
-
+  const location = useLocation()
+  const path = location.split("/"[2])
+  const { data, loading, error, reFetch } = useFetch(`/hotels/${path}`)
 
 
   return (
