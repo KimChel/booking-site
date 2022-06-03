@@ -16,7 +16,7 @@ const PropertyList = () => {
         <div className="pList">
             {loading ? ("Loading please wait") : (
                 <>
-                    {data && images.map((img,i) => (
+                    {data && images.map((img, i) => (
                         <div className="pListItem" key={i}>
                             <img
                                 src={img}
@@ -24,8 +24,8 @@ const PropertyList = () => {
                                 className="pListImg"
                             />
                             <div className="pListTitles">
-                                <h1>{data[i].type}</h1>
-                                <h2>{data[i].count} {data[i].type}</h2>
+                                <h1>{data[i]?.type}</h1>
+                                <h2>{data[i]?.count} {data[i]?.type}</h2>
                             </div>
                         </div>))}
                 </>)}
