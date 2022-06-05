@@ -1,40 +1,61 @@
-import { createContext, useReducer } from "react"
+import { createContext, useEffect, useReducer } from "react"
 
 const INITIAL_STATE = {
-    city: undefined,
-    dates: [],
-    options: {
-        adult: undefined,
-        children: undefined,
-        rooms: undefined,
-    }
+    user: JSON.parse(localStorage.getItem("user")) || null,
+    loading: false,
+    error: null,
 }
 
-export const SearchContext = createContext(INITIAL_STATE)
 
-const SearchReducer = (state, action) => {
+export const AuthContext = createContext(INITIAL_STATE)
+
+const AuthReducer = (state, action) => {
     switch (action.type) {
-        case "NEW_SEARCH":
-            return action.payload
-        case "RESET_SEARCH":
-            return INITIAL_STATE
+        case "LOGIN_START":
+            return {
+                user: null,
+                loading: true,
+                error: null,
+            }
+        case "LOGIN_SUCCESS":
+            return {
+                user: action.payload,
+                loading: false,
+                error: null,
+            }
+        case "LOGIN_FAILURE":
+            return {
+                user: null,
+                loading: false,
+                error: action.payload,
+            }
+        case "LOGOUT":
+            return {
+                user: null,
+                loading: false,
+                error: null,
+            }
         default:
             return state
     }
 }
 
-export const SearchContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE)
+    export const AuthContextProvider = ({ children }) => {
+        const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE)
 
-    return (
-        <SearchContext.Provider value={{
-            city: state.city,
-            dates: state.dates,
-            options: state.options,
-            dispatch,
-        }}>
-            {children}
-        </SearchContext.Provider>
-    )
-}
+        useEffect(()=>{
+            localStorage.setItem("user", JSON.stringify(state.user))
+        })
+
+        return (
+            <AuthContext.Provider value={{
+                user: state.city,
+                loading: state.dates,
+                error: state.options,
+                dispatch,
+            }}>
+                {children}
+            </AuthContext.Provider>
+        )
+    }
 
