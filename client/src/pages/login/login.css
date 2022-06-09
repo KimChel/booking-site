@@ -1,0 +1,26 @@
+.login{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loginInput{
+    padding: 3px;
+}
+
+.loginButton{
+    border: none;
+    color: white;
+    background-color: lightcoral;
+    padding: 10px;
+    font-weight: bold;
+    
+}
