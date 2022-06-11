@@ -6,16 +6,24 @@ import Footer from "../../components/footer/Footer";
 import { faLocation, faMapPin, faPenNib, faFamily } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFetch from "../../hooks/useFetch.js";
-import { useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+import Reserve from "../../components/reserve/Reserve";
 
 
 export const Hotel = () => {
   const location = useLocation()
   const path = location.pathname.split("/")[2]
 
+  const [open, setOpen] = useState(false)
+
   const { data, loading, error, } = useFetch(`/hotels/find/${path}`)
+
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
+
 
   const { dates, options } = useContext(SearchContext)
 
@@ -26,8 +34,15 @@ export const Hotel = () => {
     return daysDiff
   }
 
-  const days = dayDifference(dates[0].endDate, dates[0].startDate)
+  const handleClick = () => {
+    if (user) {
+      setOpen(true)
+    } else {
+      navigate("/login")
+    }
+  }
 
+  const days = dayDifference(dates[0].endDate, dates[0].startDate)
 
   return (
     <div>
@@ -107,7 +122,7 @@ export const Hotel = () => {
                 <span className="hotelPanelDits">Located in the real heart of Patra, this property has an excellent location score of 9.2</span>
                 <div className="hotelPanelPriceRes">
                   <span className="hotelPanelPrice">{days * data.cheapestPrice * options.room}€ ({days} nights)</span>
-                  <button className="hotelPanelReserve">Reserve or Book now!</button>
+                  <button onClick={handleClick} className="hotelPanelReserve">Reserve or Book now!</button>
                 </div>
               </div>
             </div>
@@ -116,6 +131,7 @@ export const Hotel = () => {
         </div>
 
       )}
+      {open && <Reserve setOpen={setOpen} hotelId={path} />}
       <MailList />
       <Footer />
     </div>
