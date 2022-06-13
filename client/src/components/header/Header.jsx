@@ -1,5 +1,5 @@
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
-import { faBed, faDiceSix, faMusic, faPeopleArrows, faPepperHot, faPerson, faPlug, faPooBolt, faToilet } from "@fortawesome/free-solid-svg-icons";
+import { faBed, faCar, faDiceSix, faMusic, faPeopleArrows, faPepperHot, faPerson, faPlane, faPlug, faPooBolt, faToilet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { DateRange } from "react-date-range";
@@ -68,20 +68,20 @@ const Header = ({ type }) => {
                         <span>Stays</span>
                     </div>
                     <div className="headerListItem">
-                        <FontAwesomeIcon icon={faToilet} />
-                        <span>Toilets</span>
+                        <FontAwesomeIcon icon={faCar} />
+                        <span>Car Rentals</span>
                     </div>
                     <div className="headerListItem">
-                        <FontAwesomeIcon icon={faPlug} />
-                        <span>ButtPlugs</span>
+                        <FontAwesomeIcon icon={faPlane} />
+                        <span>Flights</span>
                     </div>
                     <div className="headerListItem">
                         <FontAwesomeIcon icon={faMusic} />
-                        <span>Music</span>
+                        <span>Concerts</span>
                     </div>
                     <div className="headerListItem">
                         <FontAwesomeIcon icon={faDiceSix} />
-                        <span>Casino</span>
+                        <span>Casinos</span>
                     </div>
                 </div>
                 {type !== "list" &&
