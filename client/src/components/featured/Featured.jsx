@@ -1,14 +1,14 @@
 import React from 'react'
 import useFetch from '../../hooks/useFetch.js';
 import "./featured.css";
-import arta from "C:/Users/kimon/Desktop/react tries/backend/client/src/pictures/arta.png"
-import athina from "C:/Users/kimon/Desktop/react tries/backend/client/src/pictures/athens.png"
-import chania from "C:/Users/kimon/Desktop/react tries/backend/client/src/pictures/chania.png"
-import nafplio from "C:/Users/kimon/Desktop/react tries/backend/client/src/pictures/nafplio.png"
+import arta from "../pictures/arta.png"
+import athina from "../pictures/athens.png"
+import chania from "../pictures/chania.png"
+import nafplio from "../pictures/nafplio.png"
 
 const Featured = () => {
 
-    const { data, loading, error } = useFetch("/hotels/countByCity?cities=arta,giannena")
+    const { data, loading, error } = useFetch("/api/hotels/countByCity?cities=arta,giannena")
 
 
     return (

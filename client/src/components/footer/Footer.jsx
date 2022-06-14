@@ -9,7 +9,6 @@ const Footer = () => {
                 <li className="fListItem">Regions</li>
                 <li className="fListItem">Cities</li>
                 <li className="fListItem">Contact</li>
-
             </ul>
         </div>
         <div className="fText">Copyright 2022 Kimonbooking</div>

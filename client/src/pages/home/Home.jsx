@@ -14,9 +14,9 @@ export const Home = () => {
         <Header/>
         <div className="homeContainer">
           <Featured/>
-          <h1 className="homeTitle">spit</h1>
+          <h1 className="homeTitle">Properties</h1>
           <PropertyList />
-          <h1 className="homeTitle">Homes guestr lovez</h1>
+          <h1 className="homeTitle">Homes guests love</h1>
           <FeaturedProperties />
           <MailList/>
           <Footer/>

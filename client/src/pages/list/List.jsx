@@ -19,7 +19,7 @@ const List = () => {
   const [minPrice, setMinPrice] = useState(undefined);
   const [maxPrice, setMaxPrice] = useState(undefined);
 
-  const { data, loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${minPrice || 0}&max=${maxPrice || 999}`)
+  const { data, loading, error, reFetch } = useFetch(`/api/hotels?city=${destination}&min=${minPrice || 0}&max=${maxPrice || 999}`)
 
   const handleClick = () => {
     reFetch()

@@ -92,7 +92,7 @@ const Header = ({ type }) => {
                         <div className="headerSearch">
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
-                                <input type="text" placeholder="POU PAS?" className="headerSearchInput" onChange={e => setDestination(e.target.value)} />
+                                <input type="text" placeholder="Destination" className="headerSearchInput" onChange={e => setDestination(e.target.value)} />
 
                             </div>
                             <div className="headerSearchItem">
@@ -108,7 +108,8 @@ const Header = ({ type }) => {
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faPerson} className="headerIcon" />
                                 <span onClick={() => setOpenOptions(!openOptions)} className="headerSeatchText">{`${options.adult} adult | ${options.child} children | ${options.room} rooms`}</span>
-                                {openOptions && <div className="options">
+                                {openOptions && 
+                                <div className="options">
                                     <div className="optionItem">
                                         <span className="optionText">Adult</span>
                                         <div className="optionCounter">
